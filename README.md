@@ -1,5 +1,3 @@
-# masters_capstone
-Repository for capstone project
 
 This project aims to develop a machine learning model to forecast whether a credit card application will be approved or rejected. 
 By examining historical credit card application data, the model will evaluate an individual's creditworthiness and provide effective 
