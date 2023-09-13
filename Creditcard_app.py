@@ -177,19 +177,21 @@ def run():
             else:
                HOUSING_TYPE_RENTED_APT = True
 
-
-
-            input_data =(AMT_INCOME_TOTAL, FLAG_WORK_PHONE, FLAG_LAND_PHONE, YEARS_OF_EMPLOYMENT, CODE_GENDER_F, FLAG_OWN_REALTY_NO, INCOME_TYPE_COMM_ASSOCIATE, INCOME_TYPE_PENSIONER, INCOME_TYPE_STATE_SERVANT, INCOME_TYPE_STUDENT, EDUCATION_TYPE_HIGHER_EDU, EDUCATION_TYPE_ACADEMIC_DEGREE, EDUCATION_TYPE_INCOMPLETE_HIGHER_EDU, EDUCATION_TYPE_LOWER_SECONDARY, FAMILY_STATUS_CIVIL_MARRIAGE, FAMILY_STATUS_MARRIED, FAMILY_STATUS_SINGLE, FAMILY_STATUS_SEPARATED, HOUSING_TYPE_SHARE_APT, HOUSING_TYPE_HOUSE_APT, HOUSING_TYPE_MUNICIPAL_APT, HOUSING_TYPE_OFFICE_APT, HOUSING_TYPE_RENTED_APT)
-            #input_data =(315000.0, 0, 0, 2, True, False, True, False, False, False, False, True, False, False, False, True, False, False, False, True, False, False, False)
-            #input_data =(157500.0, 0, 1, 3, True, False, False, True, False, False, False, True, False, False, False, True, False, False, False, True, False, False, False)
-            input_data_as_numpy_array = np.asarray(input_data)
-            input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
-            prediction = loaded_model.predict(input_data_reshaped)
-
-            if (prediction[0] == 0):
-               st.success(full_name+approved_message)
+            #Checking income and employment condition and declining if not meeting the minimum value
+            if(AMT_INCOME_TOTAL < 12000 or YEARS_OF_EMPLOYMENT <=2):
+                st.success(full_name+declined_message)
             else:
-               st.success(full_name+declined_message)
+                input_data =(AMT_INCOME_TOTAL, FLAG_WORK_PHONE, FLAG_LAND_PHONE, YEARS_OF_EMPLOYMENT, CODE_GENDER_F, FLAG_OWN_REALTY_NO, INCOME_TYPE_COMM_ASSOCIATE, INCOME_TYPE_PENSIONER, INCOME_TYPE_STATE_SERVANT, INCOME_TYPE_STUDENT, EDUCATION_TYPE_HIGHER_EDU, EDUCATION_TYPE_ACADEMIC_DEGREE, EDUCATION_TYPE_INCOMPLETE_HIGHER_EDU, EDUCATION_TYPE_LOWER_SECONDARY, FAMILY_STATUS_CIVIL_MARRIAGE, FAMILY_STATUS_MARRIED, FAMILY_STATUS_SINGLE, FAMILY_STATUS_SEPARATED, HOUSING_TYPE_SHARE_APT, HOUSING_TYPE_HOUSE_APT, HOUSING_TYPE_MUNICIPAL_APT, HOUSING_TYPE_OFFICE_APT, HOUSING_TYPE_RENTED_APT)
+                #input_data =(315000.0, 0, 0, 2, True, False, True, False, False, False, False, True, False, False, False, True, False, False, False, True, False, False, False)
+                #input_data =(157500.0, 0, 1, 3, True, False, False, True, False, False, False, True, False, False, False, True, False, False, False, True, False, False, False)
+                input_data_as_numpy_array = np.asarray(input_data)
+                input_data_reshaped = input_data_as_numpy_array.reshape(1,-1)
+                prediction = loaded_model.predict(input_data_reshaped)
+
+                if (prediction[0] == 0):
+                    st.success(full_name+approved_message)
+                else:
+                    st.success(full_name+declined_message)
 
       with tab2:
             st.markdown("<b><h1 style='text-align: center; color: black;'>General Information and Help.</h1></b>", unsafe_allow_html=True)
