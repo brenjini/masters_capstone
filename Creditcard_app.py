@@ -70,7 +70,7 @@ def run():
          full_name = st.text_input('Full Name')
 
          # AMT_INCOME_TOTAL(3)
-         AMT_INCOME_TOTAL = st.number_input("Applicant's Monthly Income($)", value=0)
+         AMT_INCOME_TOTAL = st.number_input("Applicant's Annual Income($)", value=0)
 
          # FLAG_WORK_PHONE(22)
          own_workphone = ('Yes', 'No')
